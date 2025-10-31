@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@font-face {
+  font-family: "bmbold";
+  src: url("/fonts/bmbold.ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-heading: "bmbold", monospace;
+}
+
+@media (max-width: 767px) {
+  .grid-sizer,
+  .album-item {
+    @apply w-full;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-sizer,
+  .album-item {
+    width: calc(50% - 12px);
+  }
+
+  .album-item img {
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-sizer,
+  .album-item {
+    width: calc(33.333% - 12px);
+  }
+
+  .album-item img {
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-sizer,
+  .album-item {
+    width: calc(25% - 12px);
+  }
+
+  .album-item img {
+    min-width: 100%;
+  }
+}
