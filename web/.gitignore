@@ -142,3 +142,6 @@ vite.config.ts.timestamp-*
 
 dist
 _site
+
+# Licensed font
+public/fonts/bmbold.ttf
