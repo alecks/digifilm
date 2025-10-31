@@ -30,7 +30,7 @@ based in Edinburgh.")}}
 
     <template x-for="album in albums.filter(a => !a.private)" :key="album.id">
       <a
-        class="album-card flex flex-col rounded-xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-200 ease-in-out"
+        class="album-card flex flex-col rounded-xl overflow-hidden bg-stone-900 shadow-lg shadow-black/25 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40 transition-all duration-200 ease-in-out"
         :href="`/album.html#${album.id}`"
         :title="album.title"
       >
