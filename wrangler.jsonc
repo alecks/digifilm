@@ -1,0 +1,17 @@
+{
+  "name": "digifilm-api",
+  "compatibility_date": "2025-10-26",
+  "main": "src/index.js",
+  "r2_buckets": [
+    {
+      "binding": "DIGIFILM_IMAGES",
+      "bucket_name": "digifilm-images"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "DIGIFILM_GALLERIES",
+      "id": "447da2baccbf4e3dad0b6e8e2707e948"
+    }
+  ]
+}
