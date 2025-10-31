@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "bmbold";
-  src: url("/fonts/bmbold.ttf");
+  src: url("https://cdn.pedley.org/bmbold.ttf");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
