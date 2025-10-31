@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: Galleries
+permalink: /
+navitem: true
+menulabel: Home
+navorder: 1
+---
+
+{% from "_includes/heading-group.njk" import headingGroup %} {{
+headingGroup(title="Galleries", description="Analogue and digital photography
+based in Edinburgh.")}}
+
+<div x-data="albumList()" x-init="fetchAlbums">
+  <section
+    class="galleries grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:grid-cols-3 max-w-7xl mx-auto px-6"
+  >
+    <template x-if="loading">
+      <p class="col-span-full text-center text-gray-400">Loading albums...</p>
+    </template>
+    <template x-if="error">
+      <p
+        class="error-message col-span-full text-center text-red-500"
+        x-text="error"
+      ></p>
+    </template>
+    <template x-if="!loading && albums.length === 0 && !error">
+      <p class="col-span-full text-center text-gray-400">No albums found.</p>
+    </template>
+
+    <template x-for="album in albums.filter(a => !a.private)" :key="album.id">
+      <a
+        class="album-card flex flex-col rounded-xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-200 ease-in-out"
+        :href="`/album.html#${album.id}`"
+        :title="album.title"
+      >
+        <figure class="aspect-w-3 aspect-h-2 w-full rounded-xl overflow-hidden">
+          <img
+            :src="album.coverImage"
+            :alt="album.title"
+            width="600"
+            height="400"
+            class="w-full h-full object-cover block rounded-xl"
+          />
+        </figure>
+        <div class="flex flex-1 flex-col gap-3 p-4">
+          <h2
+            class="font-semibold text-xl leading-tight"
+            x-text="album.title"
+          ></h2>
+          <p
+            class="text-sm leading-relaxed text-gray-400"
+            x-text="album.description"
+          ></p>
+        </div>
+      </a>
+    </template>
+  </section>
+</div>

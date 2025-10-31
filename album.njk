@@ -1,0 +1,115 @@
+---
+layout: base.njk
+title: Gallery
+permalink: /album.html
+navitem: false
+---
+
+<div x-data="singleAlbum()" x-init="init()">
+  <hgroup class="max-w-4xl mx-auto mb-8 text-center">
+    <h1
+      class="font-heading text-4xl md:text-5xl mb-4"
+      x-text="data?.album?.title || 'Loading Album...'"
+    ></h1>
+    <p
+      class="text-lg text-gray-400 mb-6"
+      x-text="data?.album?.description || 'Loading details...'"
+    ></p>
+
+    <div x-show="data?.album?.allow_downloads" class="max-w-xs mx-auto">
+      <button
+        @click="downloadZip()"
+        :disabled="downloading || loading || !data?.images?.length"
+        class="btn w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
+      >
+        <template x-if="!downloading">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
+          </svg>
+        </template>
+        <template x-if="downloading">
+          <svg
+            class="w-5 h-5 animate-spin"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </template>
+        <span
+          x-text="downloading ? `Downloading... ${downloadProgress}%` : 'Download Album'"
+        ></span>
+      </button>
+
+      <div
+        x-show="downloading"
+        class="w-full bg-gray-700 rounded-full h-2 mt-3 overflow-hidden"
+      >
+        <div
+          class="bg-blue-500 h-2 rounded-full transition-all duration-300 ease-out"
+          :style="`width: ${downloadProgress}%`"
+        ></div>
+      </div>
+    </div>
+  </hgroup>
+  <section
+    id="album"
+    class="pswp-gallery w-screen -ml-6 mb-12 md:w-full md:ml-0 md:px-4"
+  >
+    <div class="grid-sizer"></div>
+
+    <template x-if="loading">
+      <p class="text-center text-gray-400 px-6">Loading photos...</p>
+    </template>
+    <template x-if="error">
+      <p class="text-center text-red-500 px-6" x-text="error"></p>
+    </template>
+    <template x-if="!loading && !data?.images?.length && !error">
+      <p class="text-center text-gray-400 px-6">
+        No photos found in this album.
+      </p>
+    </template>
+
+    <template x-for="imageData in data?.images || []" :key="imageData.src">
+      <a
+        class="album-item block mb-0 md:mb-4"
+        :href="imageData.src"
+        :data-pswp-src="imageData.src"
+        :data-pswp-width="imageData.width"
+        :data-pswp-height="imageData.height"
+      >
+        <img
+          :src="imageData.thumbnailSrc"
+          :width="imageData.width"
+          :height="imageData.height"
+          :alt="`Image from ${data?.album?.title}`"
+          class="w-full h-auto block hover:opacity-90 transition-opacity"
+        />
+      </a>
+    </template>
+  </section>
+</div>

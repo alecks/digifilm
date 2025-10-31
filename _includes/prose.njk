@@ -1,0 +1,10 @@
+{% extends "base.njk" %} {% from "heading-group.njk" import headingGroup %} {%
+block content %}
+
+<article>
+  {{ headingGroup(title=title, description=description) }}
+  <div class="prose prose-invert max-w-none mx-auto p-6 md:p-8 lg:p-12">
+    {{ content | safe }}
+  </div>
+</article>
+{% endblock %}
