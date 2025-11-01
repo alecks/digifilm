@@ -20,7 +20,7 @@ navitem: false
       <button
         @click="downloadZip()"
         :disabled="downloading || loading || !data?.images?.length"
-        class="btn w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
+        class="btn w-full bg-teal-700 hover:bg-teal-800 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
       >
         <template x-if="!downloading">
           <svg
