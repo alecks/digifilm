@@ -13,4 +13,4 @@ Our Instagram account is [@digifilm.pics](https://instagram.com/digifilm.pics).
 
 ## Email
 
-Contact us by email at `contact@digifilm.pics`.
+Contact us by email at [contact@digifilm.pics](mailto:contact@digifilm.pics).
